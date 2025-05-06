@@ -16,8 +16,8 @@ char keys[ROWS][COLS] = {
   {'7','8','9','C'},
   {'*','0','#','D'}
 };
-byte rowPins[ROWS] = {42, 41, 40, 39}; // Row pins
-byte colPins[COLS] = {38, 37, 36, 35}; // Column pins
+byte rowPins[ROWS] = {42, 41, 40, 39}; // Row
+byte colPins[COLS] = {38, 37, 36, 35}; // Col
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 // MAC Address
@@ -25,7 +25,7 @@ uint8_t peerAddress[] = {0xA0, 0x85, 0xE3, 0xF0, 0x8F, 0x18};
 
 String messageBuffer = "";
 
-// callback
+// Callback
 void onReceive(const uint8_t * mac, const uint8_t *incomingData, int len) {
   String msg = String((char*)incomingData);
   display.clearBuffer();
@@ -82,7 +82,7 @@ void loop() {
 
   if (key) {
     if (key == '#') {
-      // Send the message
+      // Send message
       if (messageBuffer.length() > 0) {
         esp_now_send(peerAddress, (uint8_t *)messageBuffer.c_str(), messageBuffer.length() + 1);
 
